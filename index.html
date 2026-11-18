@@ -8,14 +8,14 @@
 
   <!-- OpenGraph Metadata for WhatsApp & Social Sharing -->
   <meta property="og:title" content="Saurabh weds Abhilasha - Wedding Invitation" />
-  <meta property="og:description" content="We joyfully invite you to celebrate our wedding festivities on 8th & 9th December 2026 in Visakhapatnam. Saurabh ki Abhilasha." />
+  <meta property="og:description" content="We joyfully invite you to celebrate our wedding festivities on 8th & 9th December 2026 at Casa Beach Front, Bheemli, Visakhapatnam. #SaurabhKiAbhilasha" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="couple_artistic.png" />
 
   <!-- Google Fonts: Cormorant Garamond, Great Vibes, DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Canvas Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
@@ -55,59 +55,11 @@
   </section>
 
   <!-- ==========================================================================
-       FLOATING CONTROLS (Theme Switcher & Music Player)
-       ========================================================================== -->
-  <aside class="floating-controls" aria-label="Controls">
-    <!-- Theme Switcher -->
-    <div class="theme-dropdown">
-      <button class="glass-pill" id="themeToggleBtn" type="button" title="Change Theme Style">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5"></circle>
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-        </svg>
-        <span>THEME</span>
-      </button>
-      <div class="theme-menu" id="themeMenu">
-        <button type="button" class="theme-opt-btn" data-theme="theme-kasavu-watercolor">
-          <span class="theme-color-dot" style="background: #fcf8f1; border-color: #c9972c;"></span>
-          <span>Temple Kasavu Gold (Default)</span>
-        </button>
-        <button type="button" class="theme-opt-btn" data-theme="theme-noir-gold">
-          <span class="theme-color-dot" style="background: #17120f; border-color: #cba45c;"></span>
-          <span>Royal Noir &amp; Gold</span>
-        </button>
-        <button type="button" class="theme-opt-btn" data-theme="theme-ivory-gold">
-          <span class="theme-color-dot" style="background: #faf6f0; border-color: #b3883b;"></span>
-          <span>Imperial Ivory &amp; Gold</span>
-        </button>
-        <button type="button" class="theme-opt-btn" data-theme="theme-emerald-gold">
-          <span class="theme-color-dot" style="background: #0c1813; border-color: #d4af37;"></span>
-          <span>Heritage Emerald &amp; Gold</span>
-        </button>
-        <button type="button" class="theme-opt-btn" data-theme="theme-ruby-gold">
-          <span class="theme-color-dot" style="background: #18090e; border-color: #e2b35a;"></span>
-          <span>Regal Crimson &amp; Gold</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Music Toggle -->
-    <button class="glass-pill" id="musicToggleBtn" type="button" aria-label="Toggle background music">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M9 18V5l12-2v13"></path>
-        <circle cx="6" cy="18" r="3"></circle>
-        <circle cx="18" cy="16" r="3"></circle>
-      </svg>
-      <span id="musicLabel">MUSIC OFF</span>
-    </button>
-  </aside>
-
-  <!-- ==========================================================================
        MAIN INVITATION CONTENT
        ========================================================================== -->
   <main id="mainContent">
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (Uncropped Artwork & Crystal Clear Names) -->
     <header class="hero" id="hero">
       <div class="hero-top">
         <span class="monogram">✦</span>
@@ -115,48 +67,37 @@
         <span class="monogram">✦</span>
       </div>
 
-      <div class="hero-center">
+      <div class="hero-header-block">
         <p class="script-small">Together with our families</p>
         <h1 class="hero-names">
           <span class="js-groom">Saurabh</span>
-          <em>&amp;</em>
+          <span class="amp">&amp;</span>
           <span class="js-bride">Abhilasha</span>
         </h1>
         <div class="gold-rule">
           <span>✦</span>
         </div>
         <p class="hero-date">
-          <span class="js-date-text">9 December 2026</span>
-          <span>·</span>
-          <span class="js-city">Visakhapatnam, Andhra Pradesh</span>
+          <span class="js-date-text">Wednesday, 9 December 2026</span>
         </p>
-        <p class="hero-tagline js-tagline">"Saurabh ki Abhilasha"</p>
+        <p class="hero-venue">Casa Beach Front, Bheemli, Visakhapatnam</p>
+        <div class="hashtag-container">
+          <span class="hashtag-pill js-tagline">#SaurabhKiAbhilasha</span>
+        </div>
       </div>
 
-      <a class="scroll-cue" href="#portrait">
+      <!-- Framed Artwork Centerpiece - 100% Full & Uncropped -->
+      <div class="hero-portrait-frame">
+        <img src="couple_artistic.png" alt="Saurabh and Abhilasha Wedding Artwork" class="hero-portrait-img" />
+      </div>
+
+      <a class="scroll-cue" href="#welcome">
         <span>SCROLL TO EXPLORE</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </a>
     </header>
-
-    <!-- PORTRAIT SHOWCASE (Artistic Watercolor & Original Photo) -->
-    <section class="portrait-section" id="portrait">
-      <span class="eyebrow">A SACRED CELEBRATION</span>
-      <h2>Two Hearts, <i>One Journey</i></h2>
-      <div class="ornament">❦</div>
-
-      <div class="portrait-frame-container">
-        <div class="portrait-frame">
-          <img id="couplePhoto" src="couple_artistic.png" alt="Saurabh and Abhilasha Wedding Portrait" class="portrait-img" />
-        </div>
-        <div class="photo-toggle-bar">
-          <button type="button" class="photo-toggle-btn active" id="btnShowArtistic">🎨 Watercolour Artwork</button>
-          <button type="button" class="photo-toggle-btn" id="btnShowOriginal">📷 Original Photograph</button>
-        </div>
-      </div>
-    </section>
 
     <!-- WELCOME / STORY SECTION -->
     <section class="welcome-section section-pad" id="welcome">
@@ -211,7 +152,7 @@
       </div>
     </section>
 
-    <!-- EVENTS SECTION (3 Events: Mehendi, Haldi, Wedding Ceremony) -->
+    <!-- EVENTS SECTION (4 Separate Boxes: Mehndi, Sangeet, Haldi, Wedding Ceremony) -->
     <section class="events-section section-pad" id="events">
       <span class="eyebrow">SAVE THE DATES</span>
       <h2>Wedding <i>festivities</i></h2>
@@ -222,9 +163,9 @@
       </div>
     </section>
 
-    <!-- FAMILY RESIDENCES SECTION (Kolkata & Visakhapatnam) -->
+    <!-- RESIDENCES & ACCOMMODATION SECTION -->
     <section class="residence-section section-pad" id="residence">
-      <span class="eyebrow">FAMILY RESIDENCE &amp; HOSPITALITY</span>
+      <span class="eyebrow">HOSPITALITY &amp; STAY</span>
       <h2>Our <i>Homes &amp; Stay</i></h2>
       <div class="ornament">❦</div>
       <div class="residence-grid" id="residenceGrid">

@@ -7,8 +7,6 @@
   // DOM Elements
   const envelopeScreen = document.getElementById('envelopeScreen');
   const envelope = document.getElementById('envelope');
-  const musicToggleBtn = document.getElementById('musicToggleBtn');
-  const musicLabel = document.getElementById('musicLabel');
   const scrollProgress = document.getElementById('scrollProgress');
 
   // Countdown elements
@@ -28,7 +26,7 @@
     document.querySelectorAll('.js-bride').forEach(el => el.textContent = cfg.bride || 'Abhilasha');
     document.querySelectorAll('.js-date-text').forEach(el => el.textContent = cfg.weddingDateText || '9 December 2026');
     document.querySelectorAll('.js-city').forEach(el => el.textContent = cfg.city || 'Visakhapatnam');
-    document.querySelectorAll('.js-tagline').forEach(el => el.textContent = `"${cfg.tagline}"` || '"Saurabh ki Abhilasha"');
+    document.querySelectorAll('.js-tagline').forEach(el => el.textContent = cfg.tagline || '#SaurabhKiAbhilasha');
     document.querySelectorAll('.js-story').forEach(el => el.textContent = cfg.story || '');
 
     // WhatsApp RSVP links
@@ -37,20 +35,17 @@
       el.href = rsvpUrl;
     });
 
-    // Render Events List (3 Events)
+    // Render Events List (4 Separate Boxes with Timings & Dress Codes)
     renderEvents();
 
-    // Render Family Residences (Kolkata & Visakhapatnam)
-    renderResidences();
+    // Render Accommodations & Residences
+    renderAccommodations();
 
     // Setup Calendar Invite Link
     setupCalendarLink();
-
-    // Setup Photo Switcher
-    setupPhotoSwitcher();
   }
 
-  // Render Event Cards
+  // Render Event Cards (4 Events with Dress Code)
   function renderEvents() {
     const listEl = document.getElementById('eventsList');
     if (!listEl || !cfg.events) return;
@@ -59,7 +54,7 @@
       const calTitle = encodeURIComponent(`${evt.name} - Saurabh & Abhilasha Wedding`);
       const calDetails = encodeURIComponent(`Dress code: ${evt.dress}. Venue: ${evt.venue}`);
       const calLoc = encodeURIComponent(evt.venue);
-      const calDates = evt.date.includes('8') ? '20261208T053000Z/20261208T113000Z' : '20261209T133000Z/20261209T193000Z';
+      const calDates = evt.date.includes('8') ? '20261208T050000Z/20261208T113000Z' : '20261209T120000Z/20261209T180000Z';
       const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${calTitle}&details=${calDetails}&location=${calLoc}&dates=${calDates}`;
 
       return `
@@ -85,7 +80,7 @@
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>${evt.time}</span>
+                <span style="font-weight: 600; color: #2c1b12;">${evt.time}</span>
               </div>
               <div class="detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -95,7 +90,7 @@
                 <span>${evt.venue}</span>
               </div>
             </div>
-            <p class="dress-code">Dress code: ${evt.dress}</p>
+            <p class="dress-code">Dress code: <strong>${evt.dress}</strong></p>
           </div>
           <div class="event-actions">
             <a href="${evt.maps}" target="_blank" rel="noopener noreferrer" class="btn-map-link">
@@ -111,74 +106,52 @@
     }).join('');
   }
 
-  // Render Residences
-  function renderResidences() {
+  // Render Accommodations & Residences (Clean titles, no notes)
+  function renderAccommodations() {
     const gridEl = document.getElementById('residenceGrid');
-    if (!gridEl || !cfg.familyResidences) return;
+    if (!gridEl || !cfg.accommodations) return;
 
-    gridEl.innerHTML = cfg.familyResidences.map((res) => {
-      const actionHtml = res.hasLocationBtn && res.maps ? `
-        <div style="margin-top: auto;">
-          <a href="${res.maps}" target="_blank" rel="noopener noreferrer" class="btn-luxury" style="padding: 12px 22px; font-size: 11px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            GET RESIDENCE DIRECTIONS
-          </a>
-        </div>
-      ` : `
-        <div style="margin-top: auto;">
-          <span class="guest-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-            Guest Stay &amp; Hospitality
-          </span>
-        </div>
-      `;
+    gridEl.innerHTML = cfg.accommodations.map((acc) => {
+      const locationsHtml = acc.locations.map((loc) => {
+        const mapBtn = loc.maps ? `
+          <div style="margin-top: 12px;">
+            <a href="${loc.maps}" target="_blank" rel="noopener noreferrer" class="btn-luxury" style="padding: 10px 20px; font-size: 11px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              GET DIRECTIONS
+            </a>
+          </div>
+        ` : '';
+
+        return `
+          <div class="residence-location-item" style="padding: 16px 0; border-bottom: 1px dashed rgba(201, 151, 44, 0.25);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <h3 style="font-family: var(--font-serif); font-size: 24px; font-weight: 500; margin: 0; color: var(--text-main);">
+                ${loc.name}
+              </h3>
+            </div>
+            ${mapBtn}
+          </div>
+        `;
+      }).join('');
 
       return `
-        <div class="residence-card">
+        <div class="residence-card" style="padding: 32px 28px;">
           <div>
-            <span class="eyebrow">${res.title}</span>
-            <h3>${res.name}</h3>
-            <p class="residence-note">${res.note}</p>
+            <span class="eyebrow" style="color: var(--gold-dark);">${acc.categoryTitle}</span>
+            <div style="margin-top: 14px;">
+              ${locationsHtml}
+            </div>
           </div>
-          ${actionHtml}
         </div>
       `;
     }).join('');
-  }
-
-  // Photo Switcher Logic (Watercolour Artwork vs Original Photograph)
-  function setupPhotoSwitcher() {
-    const coupleImg = document.getElementById('couplePhoto');
-    const btnArtistic = document.getElementById('btnShowArtistic');
-    const btnOriginal = document.getElementById('btnShowOriginal');
-
-    if (!coupleImg || !btnArtistic || !btnOriginal) return;
-
-    btnArtistic.addEventListener('click', () => {
-      btnArtistic.classList.add('active');
-      btnOriginal.classList.remove('active');
-      coupleImg.style.opacity = '0';
-      setTimeout(() => {
-        coupleImg.src = 'couple_artistic.png';
-        coupleImg.style.opacity = '1';
-      }, 200);
-    });
-
-    btnOriginal.addEventListener('click', () => {
-      btnOriginal.classList.add('active');
-      btnArtistic.classList.remove('active');
-      coupleImg.style.opacity = '0';
-      setTimeout(() => {
-        coupleImg.src = 'couple_original.jpeg';
-        coupleImg.style.opacity = '1';
-      }, 200);
-    });
   }
 
   // Setup Overall Wedding Google Calendar Link
@@ -186,9 +159,9 @@
     const btn = document.getElementById('addToCalendarBtn');
     if (!btn) return;
     const title = encodeURIComponent("Saurabh & Abhilasha Wedding Celebration");
-    const details = encodeURIComponent("Join us to celebrate the wedding festivities of Saurabh & Abhilasha in Visakhapatnam!");
-    const location = encodeURIComponent("Visakhapatnam, Andhra Pradesh");
-    const dates = "20261208T053000Z/20261209T183000Z";
+    const details = encodeURIComponent("Join us to celebrate the wedding festivities of Saurabh & Abhilasha at Casa Beach Front, Bheemli, Visakhapatnam!");
+    const location = encodeURIComponent("Casa Beach Front, Bheemli, Visakhapatnam");
+    const dates = "20261208T050000Z/20261209T180000Z";
     btn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;
   }
 
@@ -247,40 +220,22 @@
     }
   }
 
-  // Play audio (Mangal Rang)
+  // Play audio (Mangal Rang - Always On)
   function playMusic() {
     if (!audioEl) {
       audioEl = new Audio(cfg.musicUrl || 'music.mp3');
       audioEl.loop = true;
-      audioEl.volume = 0.45;
+      audioEl.volume = 0.5;
     }
     audioEl.play().then(() => {
       isAudioPlaying = true;
-      updateAudioButtonUI(true);
     }).catch((e) => {
       console.warn("Autoplay notice: ", e);
-      isAudioPlaying = false;
-      updateAudioButtonUI(false);
+      document.body.addEventListener('click', function resume() {
+        if (audioEl) audioEl.play();
+        document.body.removeEventListener('click', resume);
+      }, { once: true });
     });
-  }
-
-  function toggleMusic() {
-    if (isAudioPlaying) {
-      if (audioEl) audioEl.pause();
-      isAudioPlaying = false;
-      updateAudioButtonUI(false);
-    } else {
-      playMusic();
-    }
-  }
-
-  function updateAudioButtonUI(playing) {
-    if (!musicLabel) return;
-    musicLabel.textContent = playing ? 'MUSIC ON' : 'MUSIC OFF';
-    const icon = musicToggleBtn.querySelector('svg');
-    if (icon) {
-      icon.style.opacity = playing ? '1' : '0.5';
-    }
   }
 
   // Envelope Opening Interaction
@@ -296,42 +251,13 @@
     }, 1000);
   }
 
-  // Theme Switcher Logic
-  function setupThemeSwitcher() {
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const themeMenu = document.getElementById('themeMenu');
-    if (!themeBtn || !themeMenu) return;
-
-    themeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      themeMenu.classList.toggle('show');
-    });
-
-    document.addEventListener('click', () => {
-      themeMenu.classList.remove('show');
-    });
-
-    document.querySelectorAll('.theme-opt-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const selectedTheme = btn.getAttribute('data-theme');
-        document.body.className = selectedTheme;
-        themeMenu.classList.remove('show');
-      });
-    });
-  }
-
   // Event Listeners
   if (envelope) {
     envelope.addEventListener('click', openEnvelope);
   }
 
-  if (musicToggleBtn) {
-    musicToggleBtn.addEventListener('click', toggleMusic);
-  }
-
   // Init
   initContent();
-  setupThemeSwitcher();
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
